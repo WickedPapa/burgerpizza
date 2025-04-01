@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pizzeria & Hamburgeria Palermo</title>
+  
+  <!-- Foglio di stile interno (CSS) -->
+  <style>
+    /* RESET e STILI DI BASE */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+    body {
+      background-color: #fefefe;
+      color: #333;
+      line-height: 1.5;
+    }
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* HEADER / NAVBAR */
+    header {
+      background-color: #222;
+      color: #fff;
+      padding: 1rem 2rem;
+      text-align: center;
+      position: sticky;
+      top: 0;
+      z-index: 999;
+    }
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    nav h1 {
+      font-size: 1.5rem;
+    }
+    .social-links a {
+      margin-left: 1rem;
+      font-size: 1.2rem;
+      transition: opacity 0.3s;
+    }
+    .social-links a:hover {
+      opacity: 0.7;
+    }
+
+    /* HERO SECTION */
+    .hero {
+      background: url('https://via.placeholder.com/1500x600?text=Hero+Image') center/cover no-repeat;
+      height: 60vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: #fff;
+      flex-direction: column;
+      padding: 2rem;
+    }
+    .hero h2 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    }
+    .hero p {
+      font-size: 1.2rem;
+      max-width: 600px;
+      margin: 0 auto;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+    }
+
+    /* SEZIONE MENU */
+    .menu-section {
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+    .menu-section h3 {
+      font-size: 2rem;
+      margin: 2rem 0 1rem;
+      text-align: center;
+      border-bottom: 2px solid #222;
+      display: inline-block;
+      padding: 0.5rem 2rem;
+    }
+    .menu-items {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1rem;
+    }
+    .menu-item {
+      background-color: #fff;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 1rem;
+      transition: box-shadow 0.3s;
+    }
+    .menu-item:hover {
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    .menu-item h4 {
+      margin-bottom: 0.5rem;
+      font-size: 1.2rem;
+      color: #444;
+    }
+    .menu-item p {
+      margin-bottom: 0.5rem;
+      color: #666;
+    }
+    .menu-item .price {
+      font-weight: bold;
+      color: #000;
+    }
+    .empty-category {
+      text-align: center;
+      font-style: italic;
+      color: #999;
+    }
+
+    /* FOOTER */
+    footer {
+      background-color: #222;
+      color: #fff;
+      text-align: center;
+      padding: 1rem;
+      margin-top: 2rem;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      nav h1 {
+        font-size: 1.2rem;
+      }
+      .hero h2 {
+        font-size: 2rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  
+  <header>
+    <nav>
+      <h1>Pizzeria & Hamburgeria Palermo</h1>
+      <div class="social-links">
+        <!-- Link Social (icona semplificata con testo) -->
+        <a href="https://facebook.com" target="_blank">Facebook</a>
+        <a href="https://instagram.com" target="_blank">Instagram</a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Sezione Hero -->
+  <section class="hero">
+    <h2>Benvenuti da PizzaBurger Palermo</h2>
+    <p>Le migliori pizze e i più succulenti hamburger in città. Ordina e gusta!</p>
+  </section>
+
+  <!-- Sezione Menu -->
+  <main class="menu-section">
+    <!-- Antipasti -->
+    <h3>Antipasti</h3>
+    <div id="antipasti-container" class="menu-items">
+      <!-- Elementi caricati da Excel -->
+    </div>
+
+    <!-- Pizze -->
+    <h3>Pizze</h3>
+    <div id="pizze-container" class="menu-items">
+      <!-- Elementi caricati da Excel -->
+    </div>
+
+    <!-- Panini -->
+    <h3>Panini</h3>
+    <div id="panini-container" class="menu-items">
+      <!-- Elementi caricati da Excel -->
+    </div>
+
+    <!-- Bibite -->
+    <h3>Bibite</h3>
+    <div id="bibite-container" class="menu-items">
+      <!-- Elementi caricati da Excel -->
+    </div>
+
+    <!-- Dolci -->
+    <h3>Dolci</h3>
+    <div id="dolci-container" class="menu-items">
+      <!-- Elementi caricati da Excel -->
+    </div>
+  </main>
+
+  <footer>
+    <p>© 2025 Pizzeria & Hamburgeria Palermo</p>
+  </footer>
+
+  <!-- Libreria XLSX per la lettura dei file Excel -->
+  <script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
+
+  <!-- Script interno (JS) -->
+  <script>
+    // Elenco delle categorie che vogliamo leggere dal file Excel
+    const CATEGORIES = ["Antipasti", "Pizze", "Panini", "Bibite", "Dolci"];
+
+    // Funzione per creare l'HTML di un singolo prodotto
+    function createMenuItemHTML(nome, descrizione, prezzo) {
+      return `
+        <div class="menu-item">
+          <h4>${nome}</h4>
+          <p>${descrizione}</p>
+          <p class="price">€ ${prezzo}</p>
+        </div>
+      `;
+    }
+
+    // Funzione per caricare il file Excel
+    function loadExcelFile() {
+      // Prova a fare la fetch del file "prodotti.xlsx" nella stessa cartella
+      fetch('prodotti.xlsx')
+        .then(response => {
+          if (!response.ok) {
+            throw new Error("File non trovato");
+          }
+          return response.arrayBuffer();
+        })
+        .then(data => {
+          const workbook = XLSX.read(data, { type: 'array' });
+
+          // Per ogni categoria, andiamo a leggere il relativo foglio
+          CATEGORIES.forEach(cat => {
+            const containerId = cat.toLowerCase() + '-container';
+            const container = document.getElementById(containerId);
+
+            // Verifichiamo se la categoria esiste come nome di foglio
+            if (workbook.SheetNames.includes(cat)) {
+              const worksheet = workbook.Sheets[cat];
+              // Converte il foglio in array di oggetti (usando la prima riga come header)
+              const jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
+
+              // jsonData è un array di righe; ci aspettiamo come intestazione:
+              // [ Nome, Descrizione, Prezzo ]
+              // Saltiamo la prima riga (intestazioni)
+              if (jsonData.length > 1) {
+                // Rimuoviamo la prima riga (header)
+                jsonData.shift();
+
+                // Creiamo la lista HTML
+                let htmlItems = '';
+                jsonData.forEach(row => {
+                  // row dovrebbe contenere [nome, descrizione, prezzo]
+                  const nome = row[0] || "N/A";
+                  const descrizione = row[1] || "";
+                  const prezzo = row[2] || "0.00";
+                  htmlItems += createMenuItemHTML(nome, descrizione, prezzo);
+                });
+                container.innerHTML = htmlItems;
+              } else {
+                // Significa che non ci sono prodotti
+                container.innerHTML = `<div class="empty-category">Non sono presenti prodotti in questa categoria</div>`;
+              }
+            } else {
+              // Foglio non trovato: anche qui, nessun prodotto
+              container.innerHTML = `<div class="empty-category">Non sono presenti prodotti in questa categoria</div>`;
+            }
+          });
+        })
+        .catch(err => {
+          // Se non è stato trovato il file o c'è un errore, mostriamo l'avviso in tutte le categorie
+          CATEGORIES.forEach(cat => {
+            const containerId = cat.toLowerCase() + '-container';
+            document.getElementById(containerId).innerHTML = `
+              <div class="empty-category">file dei prodotti non trovato</div>
+            `;
+          });
+        });
+    }
+
+    // Avviamo il caricamento all'apertura della pagina
+    window.addEventListener('DOMContentLoaded', loadExcelFile);
+  </script>
+</body>
+</html>
